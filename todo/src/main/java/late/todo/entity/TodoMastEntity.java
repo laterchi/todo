@@ -5,9 +5,10 @@ package late.todo.entity;
 
 import java.util.List;
 
-import org.springframework.data.mongodb.core.mapping.Document;
+import javax.persistence.Entity;
+import javax.persistence.OneToMany;
 
-import late.comm.entity.MaintainMongoEntity;
+import late.comm.entity.BaseEntity;
 import late.todo.eum.TodoLevel;
 import late.todo.eum.TodoMastStatus;
 import lombok.Data;
@@ -23,9 +24,9 @@ import lombok.EqualsAndHashCode;
  * @version: v1.0
  */
 @Data
-@Document(collection = "todo_mast")
+@Entity
 @EqualsAndHashCode(callSuper=false)
-public class TodoMastEntity extends MaintainMongoEntity{
+public class TodoMastEntity extends BaseEntity{
 	/**
 	 * 描述
 	 */
@@ -41,5 +42,6 @@ public class TodoMastEntity extends MaintainMongoEntity{
 	/**
 	 * 附加信息
 	 */
+	@OneToMany
 	private List<TodoAdditionalEntity> addls;
 }

@@ -3,7 +3,9 @@
  */
 package late.todo.entity;
 
-import late.comm.entity.MaintainMongoEntity;
+import javax.persistence.Entity;
+
+import late.comm.entity.BaseEntity;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 
@@ -19,7 +21,8 @@ import lombok.EqualsAndHashCode;
  */
 @Data
 @EqualsAndHashCode(callSuper = false)
-public class TodoAdditionalEntity extends MaintainMongoEntity {
+@Entity
+public class TodoAdditionalEntity extends BaseEntity {
 	/**
 	 * 序号
 	 */

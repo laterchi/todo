@@ -31,7 +31,7 @@ import late.todo.service.ITodoMastService;
  */
 @RestController
 @RequestMapping(value = "/todo")
-@Api(value="aaaa")
+@Api(value = "aaaa")
 public class TodoMastController {
 
 	@Autowired
@@ -67,7 +67,7 @@ public class TodoMastController {
 	 * @return
 	 */
 	@RequestMapping(value = "/add", method = RequestMethod.POST)
-	public void addTodoMast(@RequestBody TodoMastEntity todoMastEntity,GlobalTimeEntity value) {
+	public void addTodoMast(@RequestBody TodoMastEntity todoMastEntity, GlobalTimeEntity value) {
 		todoMastService.insert(todoMastEntity);
 	}
 
@@ -82,7 +82,7 @@ public class TodoMastController {
 	 * @return
 	 */
 	@RequestMapping(value = "/delete/{id}", method = RequestMethod.DELETE)
-	public void deleteTodoMast(@PathVariable String id) {
+	public void deleteTodoMast(@PathVariable Integer id) {
 		todoMastService.delete(id);
 	}
 
@@ -97,7 +97,7 @@ public class TodoMastController {
 	 * @return
 	 */
 	@RequestMapping(value = "/upgrade/{id}/{type}", method = RequestMethod.PUT)
-	public void gradeTodoMast(@PathVariable String id, @PathVariable Character type) {
+	public void gradeTodoMast(@PathVariable Integer id, @PathVariable Character type) {
 		todoMastService.grade(id, type);
 	}
 
@@ -142,7 +142,7 @@ public class TodoMastController {
 	 * @return
 	 */
 	@RequestMapping(value = "/complete/{id}", method = RequestMethod.PUT)
-	public void completeTask(@PathVariable String id) {
+	public void completeTask(@PathVariable Integer id) {
 		todoMastService.complete(id);
 	}
 
@@ -157,7 +157,7 @@ public class TodoMastController {
 	 * @return
 	 */
 	@RequestMapping(value = "/restart/{id}", method = RequestMethod.PUT)
-	public void restartTask(@PathVariable String id) {
+	public void restartTask(@PathVariable Integer id) {
 		todoMastService.restart(id);
 	}
 
@@ -172,7 +172,7 @@ public class TodoMastController {
 	 * @return
 	 */
 	@RequestMapping(value = "/suspend/{id}", method = RequestMethod.PUT)
-	public void suspendTask(@PathVariable String id) {
+	public void suspendTask(@PathVariable Integer id) {
 		todoMastService.suspend(id);
 	}
 

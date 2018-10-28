@@ -3,8 +3,8 @@
  */
 package late.todo.repo;
 
-import org.springframework.data.mongodb.repository.MongoRepository;
 import org.springframework.data.querydsl.QuerydslPredicateExecutor;
+import org.springframework.data.repository.CrudRepository;
 
 import late.todo.entity.GlobalTimeEntity;
 
@@ -18,6 +18,6 @@ import late.todo.entity.GlobalTimeEntity;
  * @version: v1.0
  */
 public interface IGlobalTimeRepository
-		extends MongoRepository<GlobalTimeEntity, String>, QuerydslPredicateExecutor<GlobalTimeEntity> {
+		extends QuerydslPredicateExecutor<GlobalTimeEntity>, CrudRepository<GlobalTimeEntity, Integer> {
 
 }

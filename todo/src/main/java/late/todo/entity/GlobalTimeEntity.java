@@ -3,9 +3,9 @@
  */
 package late.todo.entity;
 
-import org.springframework.data.mongodb.core.mapping.Document;
+import javax.persistence.Entity;
 
-import late.comm.entity.BaseMongoEntity;
+import late.comm.entity.BaseEntity;
 import late.comm.eum.RecordStatus;
 import late.todo.eum.GlobalTimeType;
 import lombok.Data;
@@ -23,8 +23,8 @@ import lombok.EqualsAndHashCode;
  */
 @Data
 @EqualsAndHashCode(callSuper = false)
-@Document(collection = "global_time")
-public class GlobalTimeEntity extends BaseMongoEntity {
+@Entity
+public class GlobalTimeEntity extends BaseEntity {
 	/**
 	 * 代称
 	 */

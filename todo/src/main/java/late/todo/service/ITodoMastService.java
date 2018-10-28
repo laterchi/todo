@@ -55,7 +55,7 @@ public interface ITodoMastService {
 	 * @param todoMastEntity
 	 * @return
 	 */
-	void delete(String id);
+	void delete(Integer id);
 
 	/**
 	 * 升降级操作
@@ -69,7 +69,7 @@ public interface ITodoMastService {
 	 * @param type
 	 *            0-升级 1-降级
 	 */
-	void grade(String id, char type);
+	void grade(Integer id, char type);
 
 	/**
 	 * 变更状态
@@ -80,7 +80,7 @@ public interface ITodoMastService {
 	 * @version v1.0
 	 * @param id
 	 */
-	void changeStatus(String id, TodoMastStatus status);
+	void changeStatus(Integer id, TodoMastStatus status);
 
 	/**
 	 * 维护待办信息
@@ -102,7 +102,7 @@ public interface ITodoMastService {
 	 * @version v1.0
 	 * @param id
 	 */
-	void complete(String id);
+	void complete(Integer id);
 
 	/**
 	 * 重启任务
@@ -113,7 +113,7 @@ public interface ITodoMastService {
 	 * @version v1.0
 	 * @param id
 	 */
-	void restart(String id);
+	void restart(Integer id);
 
 	/**
 	 * 任务挂起
@@ -124,7 +124,7 @@ public interface ITodoMastService {
 	 * @version v1.0
 	 * @param id
 	 */
-	void suspend(String id);
+	void suspend(Integer id);
 
 	/**
 	 * 添加附加信息

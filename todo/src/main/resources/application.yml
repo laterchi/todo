@@ -1,13 +1,13 @@
 server:
   port: 7090
 spring:
-  data:
-    mongodb:
-      uri: mongodb://127.0.0.1:27017/todo
+  datasource:
+    url: jdbc:h2:file:./.h2/todo
+    driver-class-name: org.h2.Driver
+    username: cc
+    password: cc
   jpa:
     show-sql: true
-  profiles:
-    active: local
   mail:
     default-encoding: UTF-8
     host: smtp.163.com
@@ -19,6 +19,12 @@ spring:
     password: qq0123456
   jackson:
     time-zone: GMT+8
+  h2:
+    console:
+      settings:
+        web-allow-others: true
+      path: /h2
+      enabled: true
 late:
   mail:
     sendto: chijingjia@tfrunning.com.cn

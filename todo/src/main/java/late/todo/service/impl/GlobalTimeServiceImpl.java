@@ -13,6 +13,7 @@ import com.querydsl.core.types.ExpressionUtils;
 import com.querydsl.core.types.Predicate;
 
 import late.comm.eum.RecordStatus;
+import late.comm.utils.IntegerUtils;
 import late.todo.entity.GlobalTimeEntity;
 import late.todo.entity.QGlobalTimeEntity;
 import late.todo.repo.IGlobalTimeRepository;
@@ -42,7 +43,7 @@ public class GlobalTimeServiceImpl implements IGlobalTimeService {
 	public Page<GlobalTimeEntity> findByEntity(GlobalTimeEntity entity, Pageable pageable) {
 		QGlobalTimeEntity qTodoMastEntity = QGlobalTimeEntity.globalTimeEntity;
 		Predicate pre = qTodoMastEntity.id.isNotNull();
-		if (StringUtils.isNotEmpty(entity.getId())) {
+		if (IntegerUtils.isNotEmpty(entity.getId())) {
 			pre = ExpressionUtils.and(pre, qTodoMastEntity.id.eq(entity.getId()));
 		}
 		if (StringUtils.isNotEmpty(entity.getName())) {

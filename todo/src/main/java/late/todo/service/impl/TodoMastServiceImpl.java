@@ -15,6 +15,7 @@ import org.springframework.stereotype.Service;
 import com.querydsl.core.types.ExpressionUtils;
 import com.querydsl.core.types.Predicate;
 
+import late.comm.utils.IntegerUtils;
 import late.todo.entity.QTodoMastEntity;
 import late.todo.entity.TodoAdditionalEntity;
 import late.todo.entity.TodoMastEntity;
@@ -44,7 +45,7 @@ public class TodoMastServiceImpl implements ITodoMastService {
 	public Page<TodoMastEntity> findByEntity(TodoMastEntity todoMastEntity, Pageable pageable) {
 		QTodoMastEntity qTodoMastEntity = QTodoMastEntity.todoMastEntity;
 		Predicate pre = qTodoMastEntity.id.isNotNull();
-		if (StringUtils.isNotEmpty(todoMastEntity.getId())) {
+		if (IntegerUtils.isNotEmpty(todoMastEntity.getId())) {
 			pre = ExpressionUtils.and(pre, qTodoMastEntity.id.eq(todoMastEntity.getId()));
 		}
 		if (StringUtils.isNotEmpty(todoMastEntity.getTitle())) {
@@ -64,19 +65,19 @@ public class TodoMastServiceImpl implements ITodoMastService {
 	}
 
 	@Override
-	public void delete(String id) {
+	public void delete(Integer id) {
 		todoMastRepository.deleteById(id);
 	}
 
 	@Override
-	public void grade(String id, char type) {
+	public void grade(Integer id, char type) {
 		TodoMastEntity todoMastEntity = todoMastRepository.findById(id).get();
 		todoMastEntity.setLvl(type == '0' ? todoMastEntity.getLvl().nextLvl() : todoMastEntity.getLvl().lastLvl());
 		todoMastRepository.save(todoMastEntity);
 	}
 
 	@Override
-	public void changeStatus(String id, TodoMastStatus status) {
+	public void changeStatus(Integer id, TodoMastStatus status) {
 		TodoMastEntity todoMastEntity = todoMastRepository.findById(id).get();
 		todoMastEntity.setStatus(status);
 		// Query query = new
@@ -95,21 +96,21 @@ public class TodoMastServiceImpl implements ITodoMastService {
 	}
 
 	@Override
-	public void complete(String id) {
+	public void complete(Integer id) {
 		TodoMastEntity todoMastEntity = todoMastRepository.findById(id).get();
 		todoMastEntity.setStatus(TodoMastStatus.COMPLETE);
 		todoMastRepository.save(todoMastEntity);
 	}
 
 	@Override
-	public void restart(String id) {
+	public void restart(Integer id) {
 		TodoMastEntity todoMastEntity = todoMastRepository.findById(id).get();
 		todoMastEntity.setStatus(TodoMastStatus.PROCESS);
 		todoMastRepository.save(todoMastEntity);
 	}
 
 	@Override
-	public void suspend(String id) {
+	public void suspend(Integer id) {
 		TodoMastEntity todoMastEntity = todoMastRepository.findById(id).get();
 		todoMastEntity.setStatus(TodoMastStatus.SUSPENDED);
 		todoMastRepository.save(todoMastEntity);
