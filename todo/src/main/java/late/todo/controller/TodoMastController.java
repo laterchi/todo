@@ -31,7 +31,7 @@ import late.todo.service.ITodoMastService;
  */
 @RestController
 @RequestMapping(value = "/todo")
-@Api(value="aaaa")
+@Api(value = "aaaa")
 public class TodoMastController {
 
 	@Autowired
@@ -67,7 +67,7 @@ public class TodoMastController {
 	 * @return
 	 */
 	@RequestMapping(value = "/add", method = RequestMethod.POST)
-	public void addTodoMast(@RequestBody TodoMastEntity todoMastEntity,GlobalTimeEntity value) {
+	public void addTodoMast(@RequestBody TodoMastEntity todoMastEntity, GlobalTimeEntity value) {
 		todoMastService.insert(todoMastEntity);
 	}
 

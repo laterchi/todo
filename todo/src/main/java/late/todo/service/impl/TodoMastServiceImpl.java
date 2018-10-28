@@ -138,4 +138,9 @@ public class TodoMastServiceImpl implements ITodoMastService {
 		todoMastRepository.save(todoMastInStorage);
 	}
 
+	@Override
+	public List<TodoMastEntity> findAll() {
+		return todoMastRepository.findAll();
+	}
+
 }

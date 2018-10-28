@@ -3,6 +3,8 @@
  */
 package late.todo.service;
 
+import java.util.List;
+
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 
@@ -32,6 +34,17 @@ public interface ITodoMastService {
 	 * @return
 	 */
 	Page<TodoMastEntity> findByEntity(TodoMastEntity todoMastEntity, Pageable pageable);
+
+	/**
+	 * 查找所有
+	 * 
+	 * @methodName findAll
+	 * @author chijingjia
+	 * @createTime 2018年10月28日 下午6:32:15
+	 * @version v1.0
+	 * @return
+	 */
+	List<TodoMastEntity> findAll();
 
 	/**
 	 * 保存
