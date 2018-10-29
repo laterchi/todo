@@ -5,7 +5,7 @@ package late.todo.entity;
 
 import javax.persistence.Entity;
 
-import late.comm.entity.BaseEntity;
+import late.comm.entity.MaintainEntity;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 
@@ -22,7 +22,7 @@ import lombok.EqualsAndHashCode;
 @Data
 @EqualsAndHashCode(callSuper = false)
 @Entity
-public class TodoAdditionalEntity extends BaseEntity {
+public class TodoAdditionalEntity extends MaintainEntity {
 	/**
 	 * 序号
 	 */

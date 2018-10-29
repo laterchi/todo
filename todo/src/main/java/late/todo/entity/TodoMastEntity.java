@@ -5,10 +5,12 @@ package late.todo.entity;
 
 import java.util.List;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.OneToMany;
 
-import late.comm.entity.BaseEntity;
+import late.comm.entity.MaintainEntity;
 import late.todo.eum.TodoLevel;
 import late.todo.eum.TodoMastStatus;
 import lombok.Data;
@@ -25,8 +27,8 @@ import lombok.EqualsAndHashCode;
  */
 @Data
 @Entity
-@EqualsAndHashCode(callSuper=false)
-public class TodoMastEntity extends BaseEntity{
+@EqualsAndHashCode(callSuper = false)
+public class TodoMastEntity extends MaintainEntity {
 	/**
 	 * 描述
 	 */
@@ -42,6 +44,6 @@ public class TodoMastEntity extends BaseEntity{
 	/**
 	 * 附加信息
 	 */
-	@OneToMany
+	@OneToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
 	private List<TodoAdditionalEntity> addls;
 }

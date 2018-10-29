@@ -5,7 +5,7 @@ package late.todo.entity;
 
 import javax.persistence.Entity;
 
-import late.comm.entity.BaseEntity;
+import late.comm.entity.MaintainEntity;
 import late.comm.eum.RecordStatus;
 import late.todo.eum.GlobalTimeType;
 import lombok.Data;
@@ -24,7 +24,7 @@ import lombok.EqualsAndHashCode;
 @Data
 @EqualsAndHashCode(callSuper = false)
 @Entity
-public class GlobalTimeEntity extends BaseEntity {
+public class GlobalTimeEntity extends MaintainEntity {
 	/**
 	 * 代称
 	 */
