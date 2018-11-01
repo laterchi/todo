@@ -30,7 +30,6 @@ public abstract class MaintainEntity extends BaseEntity {
 	 * 创建时间
 	 */
 	@CreatedDate
-
 	private Date createTime;
 	/**
 	 * 最后维护时间

@@ -27,6 +27,8 @@ spring:
         web-allow-others: true
       path: /h2
       enabled: true
+logging:
+  file: debug.log
 late:
   mail:
     sendto: chijingjia@tfrunning.com.cn
