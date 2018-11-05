@@ -4,6 +4,9 @@
 package late.todo.service;
 
 import org.springframework.context.ApplicationContext;
+import org.springframework.data.jpa.repository.JpaRepository;
+
+import late.todo.entity.TodoMastEntity;
 
 /**
  * 
@@ -28,7 +31,7 @@ public interface IDataBackupService {
 	void imp(ApplicationContext applicationContext);
 
 	/**
-	 * 导出
+	 * 备份
 	 * 
 	 * @methodName export
 	 * @author chijingjia
@@ -37,4 +40,15 @@ public interface IDataBackupService {
 	 * @param applicationContext
 	 */
 	void backup(ApplicationContext applicationContext);
+
+	/**
+	 * 导出
+	 * 
+	 * @methodName export
+	 * @author chijingjia
+	 * @createTime 2018年10月31日 上午9:06:28
+	 * @version v1.0
+	 * @param repo
+	 */
+	void export(String repoName);
 }

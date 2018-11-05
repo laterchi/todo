@@ -1,5 +1,7 @@
 package late.todo;
 
+import java.util.Map;
+
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.ApplicationContext;
@@ -42,7 +44,20 @@ public class MyTodoStarter {
 
 		IDataBackupService backupService = applicationContext.getBean(IDataBackupService.class);
 		backupService.imp(applicationContext);
-		backupService.backup(applicationContext);
+		// backupService.backup(applicationContext);
 	}
 
+	/**
+	 * 
+	 * @methodName getBean
+	 * @author chijingjia
+	 * @createTime 2018年11月5日 下午8:01:54
+	 * @version v1.0
+	 * @param <T>
+	 * @param clazz
+	 * @return
+	 */
+	public static <T> Map<String,T> getBeanOfType(Class<T> clazz) {
+		return applicationContext.getBeansOfType(clazz);
+	}
 }

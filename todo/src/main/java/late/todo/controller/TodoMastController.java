@@ -190,4 +190,9 @@ public class TodoMastController {
 		todoMastService.addAddl(todoMast);
 	}
 
+	@RequestMapping(value = "/export", method = RequestMethod.GET)
+	public void export() {
+		todoMastService.export();
+	}
+
 }

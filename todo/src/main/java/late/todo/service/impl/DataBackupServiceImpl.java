@@ -17,7 +17,6 @@ import java.util.Date;
 import java.util.List;
 import java.util.Map;
 
-import org.apache.commons.lang3.StringUtils;
 import org.springframework.context.ApplicationContext;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Service;
@@ -27,6 +26,7 @@ import com.alibaba.fastjson.JSONObject;
 import late.comm.backup.BackupConstants;
 import late.comm.entity.BaseEntity;
 import late.comm.utils.DateUtils;
+import late.todo.MyTodoStarter;
 import late.todo.service.IDataBackupService;
 import lombok.extern.slf4j.Slf4j;
 
@@ -140,6 +140,29 @@ public class DataBackupServiceImpl implements IDataBackupService {
 			expData(backupFile, repoName, repoMap.get(repoName));
 		}
 		log.info("备份结束");
+	}
+
+	@Override
+	public void export(String repoName) {
+		log.info("导出开始");
+		Class<?> repoClazz;
+		try {
+			repoClazz = Class.forName(repoName);
+		} catch (ClassNotFoundException e) {
+			log.error("导出异常");
+			e.printStackTrace();
+			return;
+		}
+		JpaRepository<BaseEntity, Integer> repo = (JpaRepository<BaseEntity, Integer>) MyTodoStarter.getBeanOfType(repoClazz)
+				.get(repoClazz.getSimpleName());
+		File backupFile = new File(BackupConstants.EXPORT_FOLDER + File.separator + BackupConstants.EXPORT_PREFIX
+				+ DateUtils.formatDateTimeStr(new Date()));
+		if (!backupFile.getParentFile().exists()) {
+			backupFile.getParentFile().mkdirs();
+		}
+
+		expData(backupFile, repoName, repo);
+		log.info("导出结束");
 	}
 
 	/**

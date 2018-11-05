@@ -22,6 +22,7 @@ import late.todo.entity.TodoMastEntity;
 import late.todo.eum.TodoLevel;
 import late.todo.eum.TodoMastStatus;
 import late.todo.repo.ITodoMastRepository;
+import late.todo.service.IDataBackupService;
 import late.todo.service.ITodoMastService;
 
 /**
@@ -38,8 +39,8 @@ public class TodoMastServiceImpl implements ITodoMastService {
 
 	@Autowired
 	private ITodoMastRepository todoMastRepository;
-	// @Autowired
-	// private MongoTemplate mongoTemplate;
+	@Autowired(required = false)
+	private IDataBackupService backupService;
 
 	@Override
 	public Page<TodoMastEntity> findByEntity(TodoMastEntity todoMastEntity, Pageable pageable) {
@@ -137,6 +138,11 @@ public class TodoMastServiceImpl implements ITodoMastService {
 		}
 
 		todoMastRepository.save(todoMastInStorage);
+	}
+
+	@Override
+	public void export() {
+		backupService.export(ITodoMastRepository.class.getName());
 	}
 
 }

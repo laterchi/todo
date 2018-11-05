@@ -137,4 +137,14 @@ public interface ITodoMastService {
 	 */
 	void addAddl(TodoMastEntity todoMast);
 
+	/**
+	 * 导出
+	 * 
+	 * @methodName export
+	 * @author chijingjia
+	 * @createTime 2018年11月5日 下午7:55:01
+	 * @version v1.0
+	 */
+	void export();
+
 }
