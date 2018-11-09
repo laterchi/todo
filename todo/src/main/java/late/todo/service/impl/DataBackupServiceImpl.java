@@ -161,7 +161,7 @@ public class DataBackupServiceImpl implements IDataBackupService {
 			backupFile.getParentFile().mkdirs();
 		}
 
-		expData(backupFile, repoName, repo);
+		expData(backupFile, repoClazz.getSimpleName(), repo);
 		log.info("导出结束");
 	}
 
@@ -199,8 +199,9 @@ public class DataBackupServiceImpl implements IDataBackupService {
 				} else {
 					clsName = "";
 				}
-				entity.setId(null);
-				byte[] entitBuffer = (clsName + '\n' + JSONObject.toJSONString(entity)).getBytes();
+				String text = JSONObject.toJSONString(entity);
+				text = text.replaceAll("\"id\"", "\"idxx\"");//替换ID，防止导入报错
+				byte[] entitBuffer = (clsName + '\n' + text).getBytes();
 				buffer = ByteBuffer.allocate(entitBuffer.length);
 				buffer.put(entitBuffer);
 				buffer.flip();
