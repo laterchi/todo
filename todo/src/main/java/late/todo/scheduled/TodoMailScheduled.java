@@ -40,7 +40,7 @@ public class TodoMailScheduled {
 	@Value("${late.mail.sendto}")
 	private String mailSendTo;
 
-	@Scheduled(cron = "0 0/30 8-22 * * *")
+	@Scheduled(cron = "0 0/30 9-21 * * *")
 	public void sendTodoList() {
 		// 建立邮件消息
 		SimpleMailMessage mainMessage = new SimpleMailMessage();

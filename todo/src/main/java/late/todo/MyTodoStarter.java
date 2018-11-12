@@ -22,7 +22,7 @@ import late.todo.service.IDataBackupService;
  * @createTime :2018年10月6日 下午7:16:47
  * @version: v1.0
  */
-@SpringBootApplication
+@SpringBootApplication(scanBasePackages={"late.todo","late.workday"})
 @EnableScheduling
 @Configuration
 @EnableJpaAuditing
