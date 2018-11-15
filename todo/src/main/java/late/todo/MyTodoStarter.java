@@ -4,11 +4,15 @@ import java.util.Map;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.boot.web.client.RestTemplateBuilder;
 import org.springframework.context.ApplicationContext;
+import org.springframework.context.annotation.Bean;
+import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.data.jpa.repository.config.EnableJpaAuditing;
 import org.springframework.scheduling.annotation.EnableScheduling;
 import org.springframework.transaction.annotation.EnableTransactionManagement;
+import org.springframework.web.client.RestTemplate;
 
 import late.todo.service.IDataBackupService;
 
@@ -22,11 +26,14 @@ import late.todo.service.IDataBackupService;
  * @createTime :2018年10月6日 下午7:16:47
  * @version: v1.0
  */
-@SpringBootApplication(scanBasePackages={"late.todo","late.workday"})
+@SpringBootApplication
 @EnableScheduling
 @Configuration
 @EnableJpaAuditing
 @EnableTransactionManagement
+@ComponentScan(value = "late.workday.controller")
+@ComponentScan(value = "late.workday.entity")
+@ComponentScan(value = "late.workday.repo")
 public class MyTodoStarter {
 	static ApplicationContext applicationContext;
 
@@ -57,7 +64,12 @@ public class MyTodoStarter {
 	 * @param clazz
 	 * @return
 	 */
-	public static <T> Map<String,T> getBeanOfType(Class<T> clazz) {
+	public static <T> Map<String, T> getBeanOfType(Class<T> clazz) {
 		return applicationContext.getBeansOfType(clazz);
+	}
+
+	@Bean
+	public RestTemplate restTemplate(RestTemplateBuilder builder) {
+	   return builder.build();
 	}
 }

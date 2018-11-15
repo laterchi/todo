@@ -15,6 +15,7 @@ import org.springframework.mail.javamail.JavaMailSender;
 import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.stereotype.Component;
 
+import late.comm.utils.CustomSystemUtil;
 import late.todo.entity.QTodoMastEntity;
 import late.todo.entity.TodoMastEntity;
 import late.todo.eum.TodoMastStatus;
@@ -36,7 +37,7 @@ public class TodoMailScheduled {
 	ITodoMastService todoMastService;
 	@Autowired
 	JavaMailSender jms;
-	
+
 	@Value("${late.mail.sendto}")
 	private String mailSendTo;
 
@@ -59,10 +60,9 @@ public class TodoMailScheduled {
 		todoMastEntity.setStatus(TodoMastStatus.PROCESS);
 		Page<TodoMastEntity> todoList = todoMastService.findByEntity(todoMastEntity, pageable);
 
-
 		StringBuilder text = new StringBuilder();
 		long totalCnt;
-		
+
 		if ((totalCnt = todoList.getTotalElements()) == 0L) {
 			text.append("干的漂亮，没有剩余工作");
 		} else {
@@ -75,6 +75,9 @@ public class TodoMailScheduled {
 						.append("\n");
 			}
 		}
+
+		text.append("\n\n");
+		text.append("Send by ").append(CustomSystemUtil.HOSTNAME).append("@").append(CustomSystemUtil.INTRANET_IP);
 
 		// 发送的内容
 		mainMessage.setText(text.toString());

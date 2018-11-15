@@ -9,6 +9,7 @@ import org.springframework.mail.javamail.JavaMailSender;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import late.comm.utils.CustomSystemUtil;
 import late.todo.service.ITodoMastService;
 
 /**
@@ -38,7 +39,8 @@ public class MailController {
 		mainMessage.setSubject("工作提醒");
 		// 发送的内容
 		mainMessage.setText("hello world");
-		jms.send(mainMessage);
+//		jms.send(mainMessage);
+		System.out.println(CustomSystemUtil.HOSTNAME);
 		return "1";
 	}
 }

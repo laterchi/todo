@@ -29,6 +29,11 @@ spring:
       enabled: true
 logging:
   file: debug.log
+ribbon:
+  eureka:
+    enabled: false
 late:
   mail:
     sendto: chijingjia@tfrunning.com.cn
+  workday:
+    url: http://tool.bitefu.net/jiari/?d=$date

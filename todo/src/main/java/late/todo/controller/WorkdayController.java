@@ -1,11 +1,15 @@
 /**
  * @description
  */
-package late.workday.controller;
+package late.todo.controller;
 
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
-import late.workday.entity.WorkdayCalendar;
+import late.todo.entity.WorkdayCalendarEntity;
+import late.todo.service.IWorkdayService;
 
 /**
  * 
@@ -17,8 +21,10 @@ import late.workday.entity.WorkdayCalendar;
  * @version: v1.0
  */
 @RestController
+@RequestMapping(value = "/workday")
 public class WorkdayController {
-
+	@Autowired
+	IWorkdayService workdayService;
 	/**
 	 * 实例化日历
 	 * 
@@ -29,7 +35,9 @@ public class WorkdayController {
 	 * @param workdayCalendar
 	 * @return
 	 */
-	public WorkdayCalendar init(WorkdayCalendar workdayCalendar) {
+	@RequestMapping(value = "init", method = RequestMethod.GET)
+	public WorkdayCalendarEntity init(WorkdayCalendarEntity workdayCalendar) {
+		workdayService.init(workdayCalendar);
 		return workdayCalendar;
 	}
 }
