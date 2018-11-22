@@ -41,7 +41,7 @@ public class TodoMailScheduled {
 	@Value("${late.mail.sendto}")
 	private String mailSendTo;
 
-	@Scheduled(cron = "0 0/30 9-21 * * *")
+	@Scheduled(cron = "0 10 9-21 * * ?")
 	public void sendTodoList() {
 		// 建立邮件消息
 		SimpleMailMessage mainMessage = new SimpleMailMessage();
@@ -57,9 +57,11 @@ public class TodoMailScheduled {
 				QTodoMastEntity.todoMastEntity.id.getMetadata().getName(),
 				QTodoMastEntity.todoMastEntity.status.getMetadata().getName());
 		Pageable pageable = PageRequest.of(0, 15, sort);
+		/**
+		 * 处理中的工作
+		 */
 		todoMastEntity.setStatus(TodoMastStatus.PROCESS);
 		Page<TodoMastEntity> todoList = todoMastService.findByEntity(todoMastEntity, pageable);
-
 		StringBuilder text = new StringBuilder();
 		long totalCnt;
 
@@ -75,9 +77,23 @@ public class TodoMailScheduled {
 						.append("\n");
 			}
 		}
-
 		text.append("\n\n");
-		text.append("Send by ").append(CustomSystemUtil.HOSTNAME).append("@").append(CustomSystemUtil.INTRANET_IP);
+
+		/**
+		 * 未开始的工作
+		 */
+		todoMastEntity = new TodoMastEntity();
+		todoMastEntity.setStatus(TodoMastStatus.NEW);
+		todoList = todoMastService.findByEntity(todoMastEntity, pageable);
+
+		if ((totalCnt = todoList.getTotalElements()) == 0L) {
+			text.append("没有未开始的工作");
+		} else {
+			text.append(String.format("仍有%ld份工作未开始，别忘记呦。", totalCnt));
+		}
+		text.append("\n\n");
+
+		text.append("Send by ").append(CustomSystemUtil.HOSTNAME).append("@").append(CustomSystemUtil.INTERNET_IP);
 
 		// 发送的内容
 		mainMessage.setText(text.toString());

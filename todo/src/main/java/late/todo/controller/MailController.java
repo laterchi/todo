@@ -7,9 +7,12 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.mail.SimpleMailMessage;
 import org.springframework.mail.javamail.JavaMailSender;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PutMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import late.comm.utils.CustomSystemUtil;
+import late.todo.service.IMailService;
 import late.todo.service.ITodoMastService;
 
 /**
@@ -22,11 +25,14 @@ import late.todo.service.ITodoMastService;
  * @version: v1.0
  */
 @RestController
+@RequestMapping(value = "/mail")
 public class MailController {
-	@Autowired
+	@Autowired(required = false)
 	JavaMailSender jms;
-	@Autowired
+	@Autowired(required = false)
 	ITodoMastService todoMastService;
+	@Autowired(required = false)
+	IMailService iMailService;
 
 	@GetMapping("/send")
 	public String send() { // 建立邮件消息
@@ -39,8 +45,23 @@ public class MailController {
 		mainMessage.setSubject("工作提醒");
 		// 发送的内容
 		mainMessage.setText("hello world");
-//		jms.send(mainMessage);
+		// jms.send(mainMessage);
 		System.out.println(CustomSystemUtil.HOSTNAME);
 		return "1";
+	}
+
+	@GetMapping(value = "/flag")
+	public char getMailFlag() {
+		return iMailService.getMailFlag();
+	}
+
+	@PutMapping(value = "/start")
+	public void beginSendMail() {
+		iMailService.beginSendMail();
+	}
+
+	@PutMapping(value = "/stop")
+	public void stopSendMail() {
+		iMailService.stopSendMail();
 	}
 }
