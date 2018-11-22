@@ -1,0 +1,32 @@
+/**
+ * @description
+ */
+package ${PACKAGE_NAME};
+
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
+
+
+/**
+ * 自动生成
+ */
+public interface I${NICK_NAME}Service {
+
+	/**
+	 * 根据对象查找
+	 */
+	Page<${NICK_NAME}Entity> findByEntity(${NICK_NAME}Entity ${NICK_NAME_LOWER}Entity, Pageable pageable);
+
+	/**
+	 * 保存
+	 * 
+	 */
+	${NICK_NAME}Entity insert(${NICK_NAME}Entity ${NICK_NAME_LOWER}Entity);
+
+	/**
+	 * 删除
+	 * 
+	 */
+	void delete(Integer id);
+
+}

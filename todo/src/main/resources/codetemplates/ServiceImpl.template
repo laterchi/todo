@@ -1,0 +1,34 @@
+/**
+ * @description
+ */
+package ${PACKAGE_NAME};
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
+import org.springframework.stereotype.Service;
+
+/**
+ * 自动生成
+ */
+@Service
+public class ${NICK_NAME}ServiceImpl implements I${NICK_NAME}Service {
+	@Autowired
+	I${NICK_NAME}Repository ${NICK_NAME_LOWER}Repository;
+
+	@Override
+	public Page<${NICK_NAME}Entity> findByEntity(${NICK_NAME}Entity ${NICK_NAME_LOWER}Entity, Pageable pageable) {
+		return ${NICK_NAME_LOWER}Repository.findAll(pageable);
+	}
+
+	@Override
+	public ${NICK_NAME}Entity insert(${NICK_NAME}Entity ${NICK_NAME_LOWER}Entity) {
+		return ${NICK_NAME_LOWER}Repository.save(${NICK_NAME_LOWER}Entity);
+	}
+
+	@Override
+	public void delete(Integer id) {
+		${NICK_NAME_LOWER}Repository.deleteById(id);
+	}
+
+}

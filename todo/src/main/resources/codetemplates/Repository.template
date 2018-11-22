@@ -1,0 +1,13 @@
+/**
+ * @description
+ */
+package ${PACKAGE_NAME};
+
+import org.springframework.data.jpa.repository.JpaRepository;
+
+/**
+ * 自动生成
+ */
+public interface I${NICK_NAME}Repository extends JpaRepository<${NICK_NAME}Entity, Integer> {
+	
+}
