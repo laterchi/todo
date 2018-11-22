@@ -19,6 +19,7 @@ import late.comm.utils.CustomSystemUtil;
 import late.todo.entity.QTodoMastEntity;
 import late.todo.entity.TodoMastEntity;
 import late.todo.eum.TodoMastStatus;
+import late.todo.service.IMailService;
 import late.todo.service.ITodoMastService;
 
 /**
@@ -36,6 +37,8 @@ public class TodoMailScheduled {
 	@Autowired
 	ITodoMastService todoMastService;
 	@Autowired
+	IMailService iMailService;
+	@Autowired
 	JavaMailSender jms;
 
 	@Value("${late.mail.sendto}")
@@ -43,6 +46,9 @@ public class TodoMailScheduled {
 
 	@Scheduled(cron = "0 10 9-21 * * ?")
 	public void sendTodoList() {
+		if (!iMailService.mailUseable()) {
+			return;
+		}
 		// 建立邮件消息
 		SimpleMailMessage mainMessage = new SimpleMailMessage();
 		// 发送者
