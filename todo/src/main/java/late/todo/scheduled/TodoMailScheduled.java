@@ -44,7 +44,7 @@ public class TodoMailScheduled {
 	@Value("${late.mail.sendto}")
 	private String mailSendTo;
 
-	@Scheduled(cron = "0 10 9-21 * * ?")
+	@Scheduled(cron = "15 58 8-21 * * ?")
 	public void sendTodoList() {
 		if (!iMailService.mailUseable()) {
 			return;
@@ -74,7 +74,7 @@ public class TodoMailScheduled {
 		if ((totalCnt = todoList.getTotalElements()) == 0L) {
 			text.append("干的漂亮，没有剩余工作");
 		} else {
-			text.append(String.format("剩余 %d 项工作没有完成，需要努力啊。\n\n", totalCnt));
+			text.append(String.format("剩余 %d 项工作没有完成，需要努力啊。", totalCnt));
 			text.append("工作列表：").append("\n");
 			for (TodoMastEntity todoEntity : todoList) {
 				text.append("Lvl：").append(todoEntity.getLvl())//
