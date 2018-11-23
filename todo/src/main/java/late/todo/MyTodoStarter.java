@@ -14,7 +14,10 @@ import org.springframework.scheduling.annotation.EnableScheduling;
 import org.springframework.transaction.annotation.EnableTransactionManagement;
 import org.springframework.web.client.RestTemplate;
 
+import late.todo.cons.SystemPropertyConstants;
+import late.todo.entity.SystemPropertyEntity;
 import late.todo.service.IDataBackupService;
+import late.todo.service.ISystemPropertyService;
 
 /**
  * 待办内容
@@ -48,10 +51,14 @@ public class MyTodoStarter {
 	 */
 	public static void main(String[] args) {
 		applicationContext = SpringApplication.run(MyTodoStarter.class, args);
-
-		IDataBackupService backupService = applicationContext.getBean(IDataBackupService.class);
-		backupService.imp(applicationContext);
-		// backupService.backup(applicationContext);
+		
+		ISystemPropertyService systemPropertyService = applicationContext.getBean(ISystemPropertyService.class);
+		SystemPropertyEntity systemPropertyEntity =  systemPropertyService.getByName(SystemPropertyConstants.PROP_IMPONSTART_FLAG);
+		if (systemPropertyEntity!=null && "Y".equals(systemPropertyEntity.getValue())) {
+			IDataBackupService backupService = applicationContext.getBean(IDataBackupService.class);
+			backupService.imp(applicationContext);
+//			backupService.backup(applicationContext);
+		}
 	}
 
 	/**
@@ -70,6 +77,6 @@ public class MyTodoStarter {
 
 	@Bean
 	public RestTemplate restTemplate(RestTemplateBuilder builder) {
-	   return builder.build();
+		return builder.build();
 	}
 }

@@ -10,6 +10,8 @@ spring:
       default-auto-commit: true
   jpa:
     show-sql: true
+    hibernate:
+      ddl-auto: update
   mail:
     default-encoding: UTF-8
     host: smtp.163.com
