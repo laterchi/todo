@@ -18,6 +18,7 @@ import late.todo.cons.SystemPropertyConstants;
 import late.todo.entity.SystemPropertyEntity;
 import late.todo.service.IDataBackupService;
 import late.todo.service.ISystemPropertyService;
+import lombok.extern.slf4j.Slf4j;
 
 /**
  * 待办内容
@@ -37,6 +38,7 @@ import late.todo.service.ISystemPropertyService;
 @ComponentScan(value = "late.workday.controller")
 @ComponentScan(value = "late.workday.entity")
 @ComponentScan(value = "late.workday.repo")
+@Slf4j
 public class MyTodoStarter {
 	static ApplicationContext applicationContext;
 
@@ -51,13 +53,14 @@ public class MyTodoStarter {
 	 */
 	public static void main(String[] args) {
 		applicationContext = SpringApplication.run(MyTodoStarter.class, args);
-		
 		ISystemPropertyService systemPropertyService = applicationContext.getBean(ISystemPropertyService.class);
-		SystemPropertyEntity systemPropertyEntity =  systemPropertyService.getByName(SystemPropertyConstants.PROP_IMPONSTART_FLAG);
-		if (systemPropertyEntity!=null && "Y".equals(systemPropertyEntity.getValue())) {
+		SystemPropertyEntity systemPropertyEntity = systemPropertyService.getByName(SystemPropertyConstants.PROP_IMPONSTART_FLAG);
+		if (systemPropertyEntity != null && "Y".equals(systemPropertyEntity.getValue())) {
 			IDataBackupService backupService = applicationContext.getBean(IDataBackupService.class);
 			backupService.imp(applicationContext);
-//			backupService.backup(applicationContext);
+			// backupService.backup(applicationContext);
+		} else {
+			log.info(String.format("loadOnStartup 标志为%s,不执行导入。", systemPropertyEntity.getValue()) );
 		}
 	}
 

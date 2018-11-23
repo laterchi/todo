@@ -44,7 +44,7 @@ public class TodoMailScheduled {
 	@Value("${late.mail.sendto}")
 	private String mailSendTo;
 
-	@Scheduled(cron = "15 58 8-21 * * ?")
+	@Scheduled(cron = "0 10 8-21 * * ?")
 	public void sendTodoList() {
 		if (!iMailService.mailUseable()) {
 			return;

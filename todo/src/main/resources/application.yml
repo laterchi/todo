@@ -30,7 +30,7 @@ spring:
       path: /h2
       enabled: true
 logging:
-  file: debug.log
+  file: log/debug.log
 ribbon:
   eureka:
     enabled: false

@@ -8,6 +8,7 @@ import org.springframework.core.io.ResourceLoader;
 
 import late.comm.entity.BaseEntity;
 import late.todo.entity.GlobalTimeEntity;
+import late.todo.entity.SystemPropertyEntity;
 
 /**
  * 代码生成
@@ -31,7 +32,7 @@ public class CodeGenerator {
 	 * @param args
 	 */
 	public static void main(String[] args) {
-		generate(GlobalTimeEntity.class);
+		generate(SystemPropertyEntity.class);
 	}
 
 	public static void generate(Class<? extends BaseEntity> clazz) {
