@@ -95,7 +95,7 @@ public class TodoMailScheduled {
 		if ((totalCnt = todoList.getTotalElements()) == 0L) {
 			text.append("没有未开始的工作");
 		} else {
-			text.append(String.format("仍有%ld份工作未开始，别忘记呦。", totalCnt));
+			text.append(String.format("仍有%d份工作未开始，别忘记呦。", totalCnt));
 		}
 		text.append("\n\n");
 
