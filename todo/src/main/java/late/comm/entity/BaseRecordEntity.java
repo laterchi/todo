@@ -6,6 +6,7 @@ package late.comm.entity;
 import javax.persistence.MappedSuperclass;
 
 import lombok.Data;
+import lombok.EqualsAndHashCode;
 
 /**
  * 
@@ -17,6 +18,7 @@ import lombok.Data;
  * @version: v1.0
  */
 @Data
+@EqualsAndHashCode(callSuper=false)
 @MappedSuperclass
 public abstract class BaseRecordEntity extends BaseEntity{
 	

@@ -31,7 +31,7 @@ import late.todo.service.ITodoMastService;
  */
 @RestController
 @RequestMapping(value = "/todo")
-@Api(value = "aaaa")
+@Api(value = "待办事宜")
 public class TodoMastController {
 
 	@Autowired

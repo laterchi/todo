@@ -38,6 +38,9 @@ import lombok.extern.slf4j.Slf4j;
 @ComponentScan(value = "late.workday.controller")
 @ComponentScan(value = "late.workday.entity")
 @ComponentScan(value = "late.workday.repo")
+@ComponentScan(value = "late.system.controller")
+@ComponentScan(value = "late.system.entity")
+@ComponentScan(value = "late.system.service")
 @Slf4j
 public class MyTodoStarter {
 	static ApplicationContext applicationContext;

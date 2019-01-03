@@ -7,6 +7,7 @@ import org.springframework.core.io.DefaultResourceLoader;
 import org.springframework.core.io.ResourceLoader;
 
 import late.comm.entity.BaseEntity;
+import late.system.entity.SystemMonitorEntity;
 import late.todo.entity.GlobalTimeEntity;
 import late.todo.entity.SystemPropertyEntity;
 
@@ -21,7 +22,8 @@ import late.todo.entity.SystemPropertyEntity;
  * @version: v1.0
  */
 public class CodeGenerator {
-	protected static ResourceLoader resourceLoader = new DefaultResourceLoader(); 
+	protected static ResourceLoader resourceLoader = new DefaultResourceLoader();
+	protected static Boolean override = false;
 
 	/**
 	 * 
@@ -32,7 +34,7 @@ public class CodeGenerator {
 	 * @param args
 	 */
 	public static void main(String[] args) {
-		generate(SystemPropertyEntity.class);
+		generate(SystemMonitorEntity.class);
 	}
 
 	public static void generate(Class<? extends BaseEntity> clazz) {

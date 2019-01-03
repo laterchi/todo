@@ -116,11 +116,29 @@
 			<artifactId>junit</artifactId>
 			<scope>test</scope>
 		</dependency>
-		
+
 		<dependency>
 			<groupId>org.springframework.cloud</groupId>
 			<artifactId>spring-cloud-starter-netflix-ribbon</artifactId>
 		</dependency>
+
+		<!-- https://mvnrepository.com/artifact/org.fusesource/sigar -->
+		<!-- 获取系统信息 -->
+		<!-- Sigar是Hyperic-hq产品的基础包,是Hyperic HQ主要的数据收集组件。 -->
+		<!-- 它用来从许多平台收集系统和处理信息. -->
+		<!-- 这些平台包括：Linux, Windows, Solaris, AIX, HP-UX, FreeBSD and Mac OSX. -->
+		<!-- Sigar有C，C#，Java和Perl API，java版的API为sigar.jar sigar.jar的底层是用C语言编写的， -->
+		<!-- 它通过本地方法来调用操作系统API来获取系统相关数据。 -->
+		<!-- 作者：wudiazu -->
+		<!-- 来源：CSDN -->
+		<!-- 原文：https://blog.csdn.net/wudiazu/article/details/73829324 -->
+		<!-- 版权声明：本文为博主原创文章，转载请附上博文链接！ -->
+		<dependency>
+			<groupId>org.fusesource</groupId>
+			<artifactId>sigar</artifactId>
+			<version>1.6.4</version>
+		</dependency>
+
 
 	</dependencies>
 

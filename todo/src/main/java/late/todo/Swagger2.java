@@ -25,7 +25,7 @@ public class Swagger2 extends Swagger {
 	@Bean
 	public Docket createRestApi() {
 		return new Docket(DocumentationType.SWAGGER_2).apiInfo(apiInfo()).select()
-				.apis(RequestHandlerSelectors.basePackage(this.getClass().getPackage().getName()))
+				.apis(RequestHandlerSelectors.basePackage("late"))
 				.paths(PathSelectors.any()).build();
 	}
 
