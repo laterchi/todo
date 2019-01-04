@@ -1,5 +1,5 @@
 server:
-  port: 7090
+  port: 7091
 spring:
   datasource:
     url: jdbc:h2:file:./.h2/todo
@@ -31,6 +31,8 @@ spring:
       enabled: true
 logging:
   file: log/debug.log
+  level:
+    root: info
 ribbon:
   eureka:
     enabled: false
@@ -44,3 +46,6 @@ late:
     user: c50aszxhst
     pwd: pass
     schema: c50aszxhst
+  ip:
+    url: http://2018.ip138.com/ic.asp
+    mark: 您的IP是：[

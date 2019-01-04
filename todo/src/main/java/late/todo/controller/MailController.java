@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import late.comm.utils.CustomSystemUtil;
+import late.todo.service.IIPRemoteService;
 import late.todo.service.IMailService;
 import late.todo.service.ITodoMastService;
 
@@ -33,6 +34,8 @@ public class MailController {
 	ITodoMastService todoMastService;
 	@Autowired(required = false)
 	IMailService iMailService;
+	@Autowired
+	IIPRemoteService ipRemoteService;
 
 	@GetMapping("/send")
 	public String send() { // 建立邮件消息
@@ -64,4 +67,10 @@ public class MailController {
 	public void stopSendMail() {
 		iMailService.stopSendMail();
 	}
+
+	@GetMapping(value = "/ip")
+	public void getIP() {
+		ipRemoteService.getInternetIP();
+	}
+
 }

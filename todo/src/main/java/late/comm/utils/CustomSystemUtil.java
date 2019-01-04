@@ -8,6 +8,12 @@ import java.net.InetAddress;
 import java.net.NetworkInterface;
 import java.util.Enumeration;
 
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Component;
+
+import late.todo.MyTodoStarter;
+import late.todo.service.IIPRemoteService;
+
 /**
  * 系统工具类，用于获取系统相关信息
  * 
@@ -18,6 +24,7 @@ import java.util.Enumeration;
  * @createTime :2018年11月14日 上午9:22:34
  * @version: v1.0
  */
+@Component
 public class CustomSystemUtil {
 	public static String INTRANET_IP = getIntranetIp(); // 内网IP
 	public static String INTERNET_IP = getInternetIp(); // 外网IP
@@ -25,7 +32,7 @@ public class CustomSystemUtil {
 
 	private CustomSystemUtil() {
 	}
-
+	
 	/**
 	 * 机器名
 	 * 
@@ -59,26 +66,8 @@ public class CustomSystemUtil {
 	 * @return 外网IP
 	 */
 	private static String getInternetIp() {
-		try {
-			Enumeration<NetworkInterface> networks = NetworkInterface.getNetworkInterfaces();
-			InetAddress ip = null;
-			Enumeration<InetAddress> addrs;
-			while (networks.hasMoreElements()) {
-				addrs = networks.nextElement().getInetAddresses();
-				while (addrs.hasMoreElements()) {
-					ip = addrs.nextElement();
-					if (ip != null && ip instanceof Inet4Address && ip.isSiteLocalAddress()
-							&& !ip.getHostAddress().equals(INTRANET_IP)) {
-						return ip.getHostAddress();
-					}
-				}
-			}
-
-			// 如果没有外网IP，就返回内网IP
-			return INTRANET_IP;
-		} catch (Exception e) {
-			throw new RuntimeException(e);
-		}
+		IIPRemoteService ipRemoteService = (IIPRemoteService) MyTodoStarter.getBeanOfType(IIPRemoteService.class);
+		return ipRemoteService.getInternetIP();
 	}
 
 }
