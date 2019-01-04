@@ -39,3 +39,8 @@ late:
     sendto: chijingjia@tfrunning.com.cn
   workday:
     url: http://tool.bitefu.net/jiari/?d=$date
+  fcr:
+    url: jdbc:oracle:thin:@192.168.10.205:1521:develop
+    user: c50aszxhst
+    pwd: pass
+    schema: c50aszxhst

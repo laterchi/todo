@@ -12,6 +12,7 @@ import late.system.entity.CPUMonitorEntity;
 import late.system.entity.DiskMonitorEntity;
 import late.system.entity.MemoryMonitorEntity;
 import late.system.entity.SystemMonitorEntity;
+import late.system.entity.TradingVolumeEntity;
 
 /**
  * 自动生成
@@ -78,5 +79,16 @@ public interface ISystemMonitorService {
 	 * @return
 	 */
 	List<DiskMonitorEntity> getDiskInfo();
+
+	/**
+	 * 统计交易量
+	 * 
+	 * @methodName getTradeVolume
+	 * @author chijingjia
+	 * @createTime 2019年1月3日 上午10:45:23
+	 * @version v1.0
+	 * @return
+	 */
+	List<TradingVolumeEntity> getTradeVolume();
 
 }

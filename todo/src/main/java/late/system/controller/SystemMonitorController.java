@@ -3,6 +3,8 @@
  */
 package late.system.controller;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -10,7 +12,9 @@ import org.springframework.web.bind.annotation.RestController;
 
 import io.swagger.annotations.Api;
 import late.system.entity.SystemMonitorEntity;
+import late.system.entity.TradingVolumeEntity;
 import late.system.service.ISystemMonitorService;
+import lombok.extern.slf4j.Slf4j;
 
 /**
  * 
@@ -24,6 +28,7 @@ import late.system.service.ISystemMonitorService;
 @RestController
 @RequestMapping(value = "/sm")
 @Api(value = "系统监控", tags = "系统监控")
+@Slf4j
 public class SystemMonitorController {
 	@Autowired
 	ISystemMonitorService monitorService;
@@ -39,9 +44,23 @@ public class SystemMonitorController {
 	 */
 	@GetMapping(value = "/get")
 	public SystemMonitorEntity getSystemInfo() {
-		String str=System.getProperty("java.library.path");
-		System.out.println(str);
+		String str = System.getProperty("java.library.path");
+		log.debug("java.library.path:" + str);
 		return monitorService.getSystemInfo();
+	}
+
+	/**
+	 * 统计交易量
+	 * 
+	 * @methodName getTradeVolume
+	 * @author chijingjia
+	 * @createTime 2019年1月3日 上午10:45:48
+	 * @version v1.0
+	 * @return
+	 */
+	@GetMapping(value = "/tradeV")
+	public List<TradingVolumeEntity> getTradeVolume() {
+		return monitorService.getTradeVolume();
 	}
 
 }
