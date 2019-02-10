@@ -1,5 +1,5 @@
 server:
-  port: 7091
+  port: 7090
 spring:
   datasource:
     url: jdbc:h2:file:./.h2/todo
@@ -49,3 +49,8 @@ late:
   ip:
     url: http://2018.ip138.com/ic.asp
     mark: 您的IP是：[
+  aliyun:
+    accessKeyId: LTAICZkPp4dRsZsi
+    accessKeySecret: jLK1GECtQRsA5Nux8chOViDZCchL2o
+    domainName: ccgooooo.cn
+    
