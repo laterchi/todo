@@ -45,7 +45,7 @@ public class AliyunDnsScheduled {
 	@Value("${late.mail.sendto}")
 	private String mailSendTo;
 
-	@Scheduled(cron = "0 1/2 * * * ?")
+	@Scheduled(cron = "0 1/5 * * * ?")
 	public void updateDnsInternetIp() {
 		if (client == null) {
 			IClientProfile profile = DefaultProfile.getProfile(regionId, aliyunProperties.getAccessKeyId(),
